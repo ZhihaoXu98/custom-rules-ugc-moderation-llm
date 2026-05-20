@@ -1,0 +1,58 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# uv / venv
+.venv/
+.python-version-local
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Editors / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Project: large or sensitive data
+data/raw/
+data/intermediate/
+data/cache/*
+!data/cache/.gitkeep
+*.parquet
+*.arrow
+*.bin
+*.safetensors
+*.gguf
+*.ckpt
+models/
+checkpoints/
+wandb/
+outputs/
+
+# Toxic content (per README's content exposure rules)
+data/toxic/
+
+# Frontend
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+
+# Spec'd additions (Week 1 Day 1 scaffold)
+data/audit/*
+!data/audit/.gitkeep
+data/train_*.jsonl
+node_modules/
+frontend/.env*
+.coverage
+htmlcov/
