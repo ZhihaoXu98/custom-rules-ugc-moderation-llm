@@ -147,11 +147,51 @@
 
 Day 6–7 surprise: how rarely Perspective's high-toxicity scores actually fire a `progamer_chat` rule. Across 50 stratified Civil Comments candidates (identity_attack ≥ 0.4, threat ≥ 0.4, sexual_explicit ≥ 0.4, plus tox-banded fillers), exactly one row violated — *"mental midgets"* under R2. The other 49 were political invective, hyperbolic post-loss rage, and idioms using sexual or violent vocabulary, all sliding under R2's slur-specific and R4's credible-threat-specific bars exactly as written. The rule set behaves correctly on that distribution; Civil Comments alone, under `progamer_chat`, doesn't exercise it enough to function as gold eval.
 
-Two structural breaks worth surfacing for Week 3 Day 1:
+Two structural breaks worth surfacing for Week 3 Day 1 — resolved:
 
-1. **R6 is not single-message-evaluable.** Coordinated (3+ users in 10 min) and sustained (continuing past a "stop" request) both require conversation context that `Content` doesn't carry. Either `Content.prior_context: list[str]` lands as a pinned-contract change (retrain) or R6 detection scopes to a separate context-aware corpus and the model card caveats it.
-2. **R2 narrowness.** Bigoted generalizations without slur words (*"Stupid races"*), etymological slurs that drifted (*"buggers"*), self-censored slur references (*"b\*\*\*h"*), and body-shaming (*"Fatchicks"*) all need explicit rule-text decisions before training. Same with R4 on violent rhetoric without real-world referent (*"stuff and roast it"* against a political category).
+1. **R6 is not single-message-evaluable** (coordinated/sustained patterns require conversation context that `Content` doesn't carry) → **D-008** scopes R6 out of v1; documented as model-card limitation.
+2. **R2/R4/R5 narrowness** (bigoted generalizations, drifted slurs, self-censored references, body-shaming, violent rhetoric without referent, sexual-content mentions vs descriptions) → **D-009** codifies strict-letter interpretation across all five gaps; no rule-text rewrites needed since the seed YAMLs already encode strict-letter.
 
-Adversarial replacement sketched in `docs/adversarial_progamer_chat_v0.md`. Week 3 sourcing pivots from uniform CC shuffle to ToxicChat + handcrafted adversarial set; CC stays only as a ≤20% benign-baseline contributor.
+Adversarial replacement sketched in `docs/adversarial_progamer_chat_v0.md`; light seed (~15 examples) lands in Week 3 Day 7 buffer, main body in Week 9. Week 3 sourcing pivots from uniform CC shuffle to ToxicChat + handcrafted adversarial set; CC stays only as a ≤20% benign-baseline contributor for chat regime and the primary source for comment regime.
 
 _Drafted by Claude 2026-05-21 from the Day 6–7 audit pair-session, then approved by the author. Revise for voice before this is cited in model_card.md (Week 10) or the blog post (Week 11)._
+
+## D-008: R6 (coordinated/sustained harassment) scoped out of single-message detection
+
+**Context.** Week 1 audit surfaced that R6 requires conversation context to evaluate — coordinated means 3+ users in 10 min, sustained means continuing past a "stop" request. The `Content` model (pinned Week 1) carries only single-message text. R6 cannot fire on the inference shape the API actually accepts.
+
+**Options considered.**
+- **A. Add `Content.prior_context: list[str] | None`** as a pinned-contract change; retrain Weeks 4+ to condition on context. Costs: schema/test churn, ~$15-30 extra Modal time, and forces a new training-data shape that I'd have to source.
+- **B. Scope R6 out of v1.** Derivation profiles in `data/rule_sets/*.yaml` define no R6 triggers; training set contains no R6-violation examples; the model card discloses R6 detection is out of scope. Cost: a documented capability gap.
+- **C. Hybrid** — add `prior_context` as optional, treat R6 as fireable only when context present. Highest complexity; mixes shapes the model sees.
+
+**Decision.** Option B. R6 is scoped out of single-message detection for v1.
+
+**Why.**
+- R6 detection is not part of the Pareto pitch. Frontier moderation APIs (GPT-4o, Claude) don't do context-aware harassment detection on a single-message API either; fixed classifiers (Perspective, OpenAI Moderation) certainly don't. Scoping out doesn't surrender ground against the comparators.
+- The pinned `Content` schema (Week 1) is load-bearing for everything downstream — JSON schema export, guided decoding contract, the FastAPI surface, the demo. Changing it now has cascading costs through Weeks 6-8 that the Pareto framing doesn't pay for.
+- The model card limitation language is the honest, cheap path. A real platform deploying this with multi-message context would layer their own session-aware wrapper.
+
+**What would change this.** If Week 9 adversarial reveals that R6-adjacent attacks (single-message aggressive personal-targeting that a moderator would want to flag as harassment) constitute a common, real attacker pattern, revisit with Option A in v2 — schema bump, retrain, model card update.
+
+_Drafted by Claude 2026-05-21 from Week 1 audit findings; user-decided. Revise for voice before model_card.md or the blog post cite this._
+
+## D-009: Rule-set text — strict-letter interpretation on R2/R4/R5/R6
+
+**Context.** Week 1 audit surfaced five interpretive gaps in the seed rule sets where the strict-letter reading and a spirit-of-rule reading diverge. Each gap needed an explicit decision *before* Week 3 derivation profiles encoded one or the other implicitly: R2 spirit-vs-letter (bigoted generalizations, drifted slurs, self-censored slurs), R2 body-shaming, R4 violent rhetoric without referent, R6 single-message aggressive targeting, R5 mentions vs descriptions of sexual content.
+
+**Decisions (strict-letter on all five).**
+- **R2 fires only on slur *words***, including reclaimed slurs and slurs framed as jokes (per R2's existing text). Bigoted generalizations without slur words ("Stupid races", "French are misogynists") do not fire R2. Etymological slurs that have drifted to generic informal use ("buggers" in modern British English) are case-by-case; the audit pair flags them as borderline rather than auto-firing.
+- **R2 protected classes** are race / ethnicity / gender / sexual orientation / religion / disability — exactly as the rule text lists. Body weight / appearance / political affiliation / nationality are not covered. Body-shaming and political invective are not R2 violations under this rule set; deployments needing them covered should add an explicit rule, not stretch R2.
+- **R4 requires a real-world referent** (location, workplace, daily routine, time-and-place) for "credible." Violent rhetoric without referent ("stuff and roast it" against a political category, "I'll kill you for that throw") is not credible and does not fire R4. This is consistent with R4's existing "Hyperbolic post-loss rage" carve-out.
+- **R6 requires multi-message patterns** (3+ users or sustained-past-stop, per the rule text). Single aggressive personal-targeting messages ("head out of arse, weewili") are R1 territory — permitted as trash talk under permissive rule sets, possibly warned under stricter ones via that rule set's own R1 amendment. R6 detection on single messages is out of scope (see D-008).
+- **R5 covers descriptions** of sexual acts and explicit content; clinical mentions in non-arousing context ("fellatio" as a political-joke rhetorical device) do not qualify. Body-part references in idiomatic/political contexts ("Grabbing Our Pussies Party" as Trump-quote mockery) are case-by-case at low confidence.
+
+**Why.**
+- The seed rule sets' existing text is *already* strict-letter — every clause cited above is a clause that's actually in the YAML. D-009 codifies a consistent interpretation, not a rule rewrite. No rule-set YAML changes follow from this decision.
+- Strict-letter is clearer to label against (Week 2 rubric, Week 3 derivation audit) and clearer to train on (Week 4 SFT). Three labelers converge faster on "is this a slur word?" than on "is this bigoted enough to count as a slur?"
+- Per-deployment customization remains the project's leverage. A platform wanting spirit-of-R2 amends their own rule set's R2 text; the model conditions on whatever R2 says, no retraining needed. This is the whole point of rule-set-conditional judgment.
+
+**What would change this.** If Week 9 cross-rule-set ablation shows the model fails to follow rule-text amendments (i.e., it can't actually learn "R2 covers bigoted generalizations" when a rule set says so) — meaning my "deployments customize their own rule set" argument doesn't hold — I'd revisit by either training on a mix of strict-and-spirit rule sets explicitly, or by tightening the seed rule texts to take an explicit position one way or the other.
+
+_Drafted by Claude 2026-05-21 from Week 1 audit findings; user-decided. Revise for voice before model_card.md or the blog post cite this._
