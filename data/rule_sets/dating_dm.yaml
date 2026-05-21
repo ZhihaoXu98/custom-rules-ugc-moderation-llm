@@ -1,0 +1,60 @@
+slug: dating_dm
+name: Dating App Direct Messages
+regime: chat
+description: >-
+  Moderation rules for direct messages between matched users on
+  a dating app for adults (18+). Consensual sexual conversation
+  and imagery between matches is allowed; sharp carve-outs exist
+  for consent, minors, post-rejection harassment, doxxing, and
+  identity-based abuse.
+version: 1
+created: 2026-05-21
+rules:
+  - id: R1
+    text: >-
+      Flirtation, sexual conversation, and consensual sexual
+      content (text and images) between matched users are
+      allowed. Profanity, suggestive humor, and explicit language
+      are not violations on their own.
+  - id: R2
+    text: >-
+      Unsolicited sexually explicit content is prohibited. Before
+      sending explicit text, photos, or links, consent must be
+      established — either explicitly requested by the recipient
+      or via clearly mutual escalation earlier in the
+      conversation.
+  - id: R3
+    text: >-
+      Continuing sexual messages after the recipient declines,
+      ignores, expresses discomfort, or asks to slow down is
+      prohibited. Persistence after a stop signal is a violation
+      even when prior messages were welcomed.
+  - id: R4
+    text: >-
+      Any sexual content involving real or roleplayed minors
+      (under 18), age-play framed as minors, or solicitation of
+      sexual content from a user who reveals or implies they are
+      a minor is prohibited absolutely. No carve-outs.
+  - id: R5
+    text: >-
+      Threats, intimidation, sustained insults, or coordinated
+      harassment after a match unmatches, blocks, declines, or
+      stops responding are prohibited.
+  - id: R6
+    text: >-
+      Sharing the match's personal information without consent —
+      real name (if not provided), workplace, home address,
+      family details, off-platform handles — or threatening to
+      share it is prohibited.
+  - id: R7
+    text: >-
+      Solicitation of paid sexual or quasi-sexual services
+      (escort, sugaring arrangement, OnlyFans promo, cam services,
+      paid sexting) is prohibited. The platform is for matching,
+      not commerce.
+  - id: R8
+    text: >-
+      Slurs targeting race, ethnicity, gender, sexual orientation,
+      religion, or disability are prohibited regardless of context,
+      including unsolicited fetishization of protected
+      characteristics ("I only date [group]" as a hook).

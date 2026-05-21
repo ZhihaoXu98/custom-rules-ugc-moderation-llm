@@ -1,0 +1,63 @@
+slug: progamer_chat
+name: Pro Gamer Esports Chat
+regime: chat
+description: >-
+  Moderation rules for a competitive esports Discord server.
+  Permissive on trash talk and profanity as part of the culture;
+  strict on identity-based slurs, doxxing, sexual content, and
+  coordinated harassment. Calibrated for players, not for general
+  audiences.
+version: 1
+created: 2026-05-21
+rules:
+  - id: R1
+    text: >-
+      Profanity, trash talk, and generic insults like "trash",
+      "noob", or "washed" aimed at gameplay performance are allowed.
+      This permissiveness is overridden by R2-R8; e.g., a slur is
+      always a violation under R2 even when delivered as trash talk.
+  - id: R2
+    text: >-
+      Slurs targeting race, ethnicity, gender, sexual orientation,
+      religion, or disability are prohibited regardless of intent or
+      target, including reclaimed slurs and slurs framed as jokes.
+  - id: R3
+    text: >-
+      Doxxing is prohibited: sharing or threatening to share another
+      person's real name, home or work address, phone number,
+      employer, school, or other identifying info without consent.
+      Applies whether the target is a server member, streamer, or
+      pro.
+  - id: R4
+    text: >-
+      Credible threats of physical violence are prohibited. A threat
+      is credible when it references the target's real-world
+      location, workplace, daily routine, or specifies a time and
+      place. Hyperbolic post-loss rage like "I'll kill you" with no
+      real-world referent is not credible.
+  - id: R5
+    text: >-
+      Sexually explicit content — describing sexual acts, body parts
+      in a sexual context, sexual images or links, or soliciting
+      nudes or sexual contact — is prohibited. Sexual words used as
+      profanity (e.g., "fuck this game") are governed by R1, not R5.
+  - id: R6
+    text: >-
+      Coordinated or sustained harassment of one user is prohibited
+      even when individual messages are mild. Coordinated means
+      three or more users targeting the same person within a
+      ten-minute window. Sustained means one user continuing after
+      the target asks to stop.
+  - id: R7
+    text: >-
+      Promotion of cheats, hacks, account boosting, or smurf
+      services is prohibited. Discussion of suspected cheaters in
+      public matches is allowed when grounded in shared evidence;
+      unsupported personal accusations against a named player as a
+      smear are prohibited.
+  - id: R8
+    text: >-
+      Spam is prohibited, including (a) the same message posted
+      three or more times in succession, (b) messages whose primary
+      content is a link advertising an outside service, and (c)
+      bot-style giveaway or promotional posts.

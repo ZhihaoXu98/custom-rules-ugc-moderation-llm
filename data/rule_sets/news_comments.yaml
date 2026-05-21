@@ -1,0 +1,55 @@
+slug: news_comments
+name: Mainstream News Comments
+regime: comment
+description: >-
+  Moderation rules for the comment section of a mainstream news
+  outlet covering politics, business, and current affairs. Strong
+  political opinions and sharp criticism of public figures and
+  policies are encouraged; the line is drawn at personal attacks
+  on other commenters, threats, slurs, doxxing, and off-topic
+  content.
+version: 1
+created: 2026-05-21
+rules:
+  - id: R1
+    text: >-
+      Strongly worded political opinions, partisan criticism, and
+      sharp critique of public figures, parties, policies, and
+      institutions are allowed, including unflattering
+      characterizations grounded in their public conduct.
+  - id: R2
+    text: >-
+      Personal attacks on other commenters — ad hominem,
+      name-calling, attacks on intelligence, character, or
+      identity — are prohibited. Criticizing a commenter's claim
+      is allowed; insulting the commenter is not.
+  - id: R3
+    text: >-
+      Slurs and dehumanizing language targeting race, ethnicity,
+      gender, sexual orientation, religion, or disability are
+      prohibited regardless of target — other commenters, public
+      figures, or groups discussed in the article.
+  - id: R4
+    text: >-
+      Threats of violence are prohibited, including hyperbolic
+      threats against public figures ("X should be hanged",
+      "someone should shoot them"). Sharp criticism without a
+      violence referent remains allowed under R1.
+  - id: R5
+    text: >-
+      Doxxing — sharing another commenter's real name, address,
+      employer, or other identifying info without consent — is
+      prohibited. Discussing already-public information about
+      public figures named in the article is allowed.
+  - id: R6
+    text: >-
+      Comments must engage with the article's subject matter.
+      Off-topic content — unrelated talking points, generic
+      culture-war tangents, unrelated personal anecdotes — is
+      prohibited.
+  - id: R7
+    text: >-
+      Spam is prohibited, including (a) the same comment posted
+      three or more times across threads, (b) comments whose
+      primary content is a link advertising an outside service,
+      and (c) bot-style promotional content.

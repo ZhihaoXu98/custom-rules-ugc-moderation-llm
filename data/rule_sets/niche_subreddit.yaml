@@ -1,0 +1,58 @@
+slug: niche_subreddit
+name: Niche Hobby Subreddit
+regime: comment
+description: >-
+  Moderation rules for a small specialized hobby subreddit
+  (e.g., mechanical keyboards, vintage cameras, urban birding).
+  The community's signal-to-noise ratio is the central concern,
+  so on-topic enforcement is strict; baseline civility is
+  expected but vigorous critique of techniques, gear, and
+  builds is encouraged.
+version: 1
+created: 2026-05-21
+rules:
+  - id: R1
+    text: >-
+      Posts and comments must engage with the hobby. Off-topic
+      content — unrelated memes, generic life updates, generic
+      political takes, content from adjacent-but-different
+      hobbies — is prohibited even when well-intentioned.
+  - id: R2
+    text: >-
+      Low-effort content is prohibited: one-word replies ("this",
+      "lol", "nice"), uncaptioned images with no context, and
+      "what should I buy?" posts without a stated budget, use
+      case, or what the user already considered.
+  - id: R3
+    text: >-
+      Promotion of personal projects, builds, products, or
+      services is allowed at most once per user per seven days
+      and must be clearly self-identified. Hidden promotion in
+      otherwise on-topic posts is prohibited.
+  - id: R4
+    text: >-
+      AI-generated content (images, builds, posts, or comments)
+      must be disclosed inline. Undisclosed AI-generated content
+      passed off as original work is prohibited.
+  - id: R5
+    text: >-
+      Vigorous critique of techniques, gear, or builds is
+      encouraged. Personal attacks against other community
+      members — insulting their intelligence, taste, or
+      character — are prohibited.
+  - id: R6
+    text: >-
+      Slurs targeting race, ethnicity, gender, sexual
+      orientation, religion, or disability are prohibited
+      regardless of intent or framing.
+  - id: R7
+    text: >-
+      Doxxing of community members or named individuals —
+      sharing real names, addresses, workplaces, or other
+      identifying info without consent — is prohibited.
+  - id: R8
+    text: >-
+      Recruitment for competing communities, Discords, or
+      off-platform spaces is prohibited. Linking to relevant
+      external resources (reviews, tutorials, manufacturer
+      pages) is allowed when it informs the discussion.

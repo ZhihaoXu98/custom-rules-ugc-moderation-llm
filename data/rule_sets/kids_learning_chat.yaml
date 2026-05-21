@@ -1,0 +1,73 @@
+slug: kids_learning_chat
+name: Kids' Coding Platform Chat
+regime: chat
+description: >-
+  Moderation rules for a chat feature on a kids' (ages 8-13)
+  coding-learning platform. Strict by design — mild profanity,
+  mild insults, and borderline content are all violations.
+  Calibrated for child safety, parental trust, and a
+  learning-focused atmosphere; the bar for action is far lower
+  than on adult platforms.
+version: 1
+created: 2026-05-21
+rules:
+  - id: R1
+    text: >-
+      Any profanity is prohibited, including but not limited to
+      strong words ("fuck", "shit"), censored variants ("f***",
+      "sh!t", "wtf"), and mild words ("damn", "hell", "crap").
+      Family-friendly substitutes ("frick", "fudge", "darn",
+      "heck") are allowed.
+  - id: R2
+    text: >-
+      Insults or put-downs directed at another user are prohibited,
+      including soft insults like "noob", "stupid", "loser", or
+      "weirdo". Frustration with one's own code or the lesson
+      ("this exercise is stupid") is allowed.
+  - id: R3
+    text: >-
+      Identity-based slurs, jokes, or negative references targeting
+      race, ethnicity, gender, sexual orientation, religion, or
+      disability are prohibited regardless of intent, including
+      when framed as a question, joke, or "just curious".
+  - id: R4
+    text: >-
+      Sharing personal information about anyone — oneself, family,
+      classmates, or other users — is prohibited: real names, home
+      addresses, schools, phone numbers, parents' info, face
+      photos, or off-platform social media handles.
+  - id: R5
+    text: >-
+      Inviting another user to move the conversation off-platform
+      (Discord, Snapchat, Instagram, TikTok, WhatsApp, email,
+      in-person meetups), or sharing one's own off-platform
+      handles to invite contact, is prohibited regardless of
+      framing.
+  - id: R6
+    text: >-
+      Sexual or romantic content is prohibited, including innuendo,
+      "kissing/dating" jokes, references to sexual or romantic body
+      parts, and asking another user's age or appearance for
+      romantic interest. Romantic themes inside an assigned story
+      project are allowed when they are the project content.
+  - id: R7
+    text: >-
+      References to real-world violence, weapons, gore, self-harm,
+      suicide, eating disorders, drugs, alcohol, or tobacco are
+      prohibited. Cartoonish violence inside a coding project
+      (Scratch sprite explosions, simple game enemies) is allowed
+      when it is the project content.
+  - id: R8
+    text: >-
+      Exclusion, social bullying, and indirect targeting are
+      prohibited: "don't play with X", repeatedly mentioning a
+      user across messages to mock them, and indirect put-downs
+      ("everyone thinks X is annoying"). Direct insults are
+      covered by R2.
+  - id: R9
+    text: >-
+      Spam (the same message posted three or more times in
+      succession), off-topic flooding (more than five non-coding
+      messages in a row), and external links to non-platform
+      sites are prohibited. Sharing project links within the
+      platform itself is allowed.
