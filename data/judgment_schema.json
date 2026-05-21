@@ -1,0 +1,97 @@
+{
+  "$defs": {
+    "PrimaryCategory": {
+      "enum": [
+        "harassment",
+        "hate_speech",
+        "sexual",
+        "violence",
+        "spam",
+        "self_harm",
+        "other",
+        "none"
+      ],
+      "title": "PrimaryCategory",
+      "type": "string"
+    },
+    "Severity": {
+      "enum": [
+        "low",
+        "moderate",
+        "high",
+        "critical"
+      ],
+      "title": "Severity",
+      "type": "string"
+    },
+    "SuggestedAction": {
+      "enum": [
+        "no_action",
+        "warn",
+        "hide",
+        "remove",
+        "escalate",
+        "ban"
+      ],
+      "title": "SuggestedAction",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "violates_policy": {
+      "title": "Violates Policy",
+      "type": "boolean"
+    },
+    "violated_rules": {
+      "items": {
+        "pattern": "^R\\d{1,3}$",
+        "type": "string"
+      },
+      "maxItems": 10,
+      "title": "Violated Rules",
+      "type": "array"
+    },
+    "severity": {
+      "$ref": "#/$defs/Severity"
+    },
+    "primary_category": {
+      "$ref": "#/$defs/PrimaryCategory"
+    },
+    "evidence_spans": {
+      "items": {
+        "maxLength": 300,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 5,
+      "title": "Evidence Spans",
+      "type": "array"
+    },
+    "suggested_action": {
+      "$ref": "#/$defs/SuggestedAction"
+    },
+    "confidence": {
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Confidence",
+      "type": "number"
+    },
+    "reasoning": {
+      "maxLength": 400,
+      "minLength": 1,
+      "title": "Reasoning",
+      "type": "string"
+    }
+  },
+  "required": [
+    "violates_policy",
+    "severity",
+    "primary_category",
+    "suggested_action",
+    "confidence",
+    "reasoning"
+  ],
+  "title": "Judgment",
+  "type": "object"
+}
