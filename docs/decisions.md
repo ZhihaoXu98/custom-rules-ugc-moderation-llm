@@ -142,3 +142,16 @@
 - Five, deliberately. Each rule set generates ~200-600 SFT pairs in Week 3; ten dilutes per-set signal and inflates the eval matrix (5 × evaluators × calibration slices is already non-trivial). Five buys density per set while keeping eval tractable.
 
 **What would change this.** If Week 8 cross-rule-set eval shows the model collapses to a learned default on novel rule sets it didn't see in training, the seed catalog is too narrow — I'd add 2-3 adjacent rule sets, or introduce procedurally generated rule sets at training time to force generalization. If the opposite — model overfits per-rule-set tokens and fails to transfer — the catalog is too disjoint, and I'd add a "shared backbone" of rules (no slurs, no doxxing) inherited across sets so identical sub-policies appear in different surface contexts.
+
+## Week 1 reflection — audit findings
+
+Day 6–7 surprise: how rarely Perspective's high-toxicity scores actually fire a `progamer_chat` rule. Across 50 stratified Civil Comments candidates (identity_attack ≥ 0.4, threat ≥ 0.4, sexual_explicit ≥ 0.4, plus tox-banded fillers), exactly one row violated — *"mental midgets"* under R2. The other 49 were political invective, hyperbolic post-loss rage, and idioms using sexual or violent vocabulary, all sliding under R2's slur-specific and R4's credible-threat-specific bars exactly as written. The rule set behaves correctly on that distribution; Civil Comments alone, under `progamer_chat`, doesn't exercise it enough to function as gold eval.
+
+Two structural breaks worth surfacing for Week 3 Day 1:
+
+1. **R6 is not single-message-evaluable.** Coordinated (3+ users in 10 min) and sustained (continuing past a "stop" request) both require conversation context that `Content` doesn't carry. Either `Content.prior_context: list[str]` lands as a pinned-contract change (retrain) or R6 detection scopes to a separate context-aware corpus and the model card caveats it.
+2. **R2 narrowness.** Bigoted generalizations without slur words (*"Stupid races"*), etymological slurs that drifted (*"buggers"*), self-censored slur references (*"b\*\*\*h"*), and body-shaming (*"Fatchicks"*) all need explicit rule-text decisions before training. Same with R4 on violent rhetoric without real-world referent (*"stuff and roast it"* against a political category).
+
+Adversarial replacement sketched in `docs/adversarial_progamer_chat_v0.md`. Week 3 sourcing pivots from uniform CC shuffle to ToxicChat + handcrafted adversarial set; CC stays only as a ≤20% benign-baseline contributor.
+
+_Drafted by Claude 2026-05-21 from the Day 6–7 audit pair-session, then approved by the author. Revise for voice before this is cited in model_card.md (Week 10) or the blog post (Week 11)._
