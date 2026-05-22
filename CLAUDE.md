@@ -39,6 +39,12 @@ frontend/    — Next.js demo app
 - data/golden_eval.jsonl — locked after Week 2. Any change is a new version
   with a fresh baseline re-run.
 
+## Pinned contracts (Week 1)
+- src/schema.py — locked from Day 2. Changes require retraining and re-eval.
+- data/rule_sets/*.yaml — the 5 hand-written sets are exemplars; LLM-generated
+  rule sets in Week 3 will be audited individually before joining the catalog.
+- docs/decisions.md — never modify without my approval; I write every entry.
+
 ## Documents I write (NOT you)
 - docs/decisions.md — every entry is mine. You may suggest content;
   I write prose.

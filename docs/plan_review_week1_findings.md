@@ -1,7 +1,7 @@
 # Holistic plan review — propagating Week 1 findings across Weeks 1–11
 
 **Drafted:** 2026-05-21 by Claude based on the audit work this week.
-**Status:** review-only; no prompt files edited. You decide which to apply.
+**Status:** **superseded by D-012 / D-013 in `docs/decisions.md`** + the Week 2 / Week 3 prompt-file edits already applied. References below to "D-008 candidate", "D-014 scope-out", and "renumber Week 2+ by 1" are the pre-decision analysis; the actual landed decisions are D-012 (R6 scoped out) and D-013 (strict-letter interpretation), with D-008..D-011 reserved for the user's data_plan.md skeletons (Civil Comments / Qwen 32B synth / hand-authored adversarial / ToxicChat) when formally rewritten in their voice. This doc is preserved as analysis history; do not act on its specific D-number recommendations.
 
 ## Executive summary
 

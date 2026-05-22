@@ -79,7 +79,7 @@ this we need `prior_context: list[str] | None` on `Content`. Two options:
    Production endpoint stays single-message-only; R6 detection is documented
    as out of scope until a context-aware v2.
 
-This is decision-log territory (D-008 candidate).
+This is decision-log territory (resolved as D-012; scope-R6-out option taken).
 
 ---
 
@@ -308,7 +308,7 @@ higher-value data.
 
 ## Recommended sequencing
 
-1. **Decide schema** (D-008): does `Content` get `prior_context`? Either
+1. **Schema decision** (resolved as D-012): `Content` does NOT get `prior_context` (R6 scoped out for v1). R6-relevant adversarial examples below remain authored but documented as out-of-scope for the v1 model.
    way, document the decision before authoring R6 examples.
 2. **Draft cross-rule-set foils first** (~5-10). They're the highest-leverage
    demonstration rows.
